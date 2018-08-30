@@ -22,10 +22,18 @@
         <div class="column">
           <h2 class="title is-4">View</h2>
 
+          <!-- Board -->
           <table class="table is-bordered">
             <tfoot>
               <tr v-for="m in board.Height" v-bind:key="'height' + m">
-                <th v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.isPlayerHere(n, m) }"></th>
+
+                <th class="has-text-centered" v-for="n in board.Width" v-bind:key="'width' + n">
+                  <!-- Player -->
+                  <i class="fas fa-male" v-if="board.Player.isHere(n, m)"></i>
+                  <!-- Goal -->
+                  <i class="fas fa-flag-checkered" v-if="board.Goal.isHere(n, m)"></i>
+                </th>
+                
               </tr>
             </tfoot>
           </table>
@@ -59,13 +67,12 @@
 </template>
 
 <script lang="ts">
-/*import fontawesome from "@fortawesome/fontawesome";
+import fontawesome from "@fortawesome/fontawesome";
 import {
-  faUser,
-  faCheck,
-  faDownload
+  faMale, // Player
+  faFlagCheckered, // Goal
 } from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(faUser, faCheck, faDownload);*/
+fontawesome.library.add(faMale, faFlagCheckered);
 
 import { Board } from './src/board.model';
 
@@ -74,7 +81,7 @@ export default {
 
   data: () => {
     return {
-      board: new Board(2, 3, 2, 2)
+      board: new Board(2, 1, 2, 2)
     };
   },
 

@@ -27,4 +27,13 @@ export abstract class Piece
         this._x = x == undefined ? 1 : x;
         this._y = y == undefined ? 1 : y;
     }
+
+    /**
+     * Returns true if the piece is at the specified spot, false if not
+     * @param x The possible x position of the piece
+     * @param y The possible y position of the piece
+     */
+    public isHere(x:number, y:number): boolean {
+        return this._x == x && this._y == y;
+    }
 }
