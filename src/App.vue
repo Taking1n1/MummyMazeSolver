@@ -25,7 +25,7 @@
           <table class="table is-bordered">
             <tfoot>
               <tr v-for="m in board.Height" v-bind:key="'height' + m">
-                <th v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.returnTrue() }"></th>
+                <th v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.isPlayerHere(n, m) }"></th>
               </tr>
             </tfoot>
           </table>
@@ -74,7 +74,7 @@ export default {
 
   data: () => {
     return {
-      board: new Board(1, 1, 2, 2)
+      board: new Board(2, 3, 2, 2)
     };
   },
 
