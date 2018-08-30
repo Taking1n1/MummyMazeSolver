@@ -1,5 +1,5 @@
 <template>
-  <div id="app-container" class="container has-text-centered">
+  <div id="app-container" class="container is-fluid has-text-centered">
     <!-- Hero -->
     <section class="hero">
       <div class="hero-body">
@@ -17,18 +17,41 @@
     <!-- Other -->
     <section class="section">
       <div class="columns">
+
         <!-- View -->
         <div class="column">
           <h2 class="title is-4">View</h2>
+
+          <table class="table is-bordered">
+            <tfoot>
+              <tr v-for="m in boardHeight" v-bind:key="'height' + m">
+                <th v-for="n in boardWidth" v-bind:key="'width' + n"></th>
+              </tr>
+            </tfoot>
+          </table>
         </div>
+
+      </div>
+
+      <div class="columns">
+
         <!-- Controller -->
         <div class="column">
           <h2 class="title is-4">Controller</h2>
-          </div>
+        </div>
+
         <!-- Model -->
         <div class="column">
           <h2 class="title is-4">Model</h2>
-          </div>
+
+          <label class="label">boardWidth</label>
+          <input class="input" type="number" placeholder="boardWidth" v-model.number="boardWidth">
+
+          <label class="label">boardHeight</label>
+          <input class="input" type="number" placeholder="boardHeight" v-model.number="boardHeight">
+
+        </div>
+
       </div>
     </section>
 
@@ -48,15 +71,12 @@ export default {
   name: "App",
   data: () => {
     return {
+      boardWidth: 3,
+      boardHeight: 4
     };
   }
 };
 </script>
 
 <style lang="scss">
-$font-stack: "Avenir", Helvetica, Arial, sans-serif;
-
-#app-container {
-  font-family: $font-stack;
-}
 </style>
