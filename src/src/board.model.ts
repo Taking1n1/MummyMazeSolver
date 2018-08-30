@@ -1,5 +1,6 @@
 import {Player} from  './pieces/player/player.model';
 import {Goal} from  './pieces/misc/goal.model';
+import {Walls} from  './walls.model';
 
 export class Board
 {
@@ -9,8 +10,11 @@ export class Board
     /** The goal to reach */
     public Goal: Goal;
 
+    /** The walls */
+    public Walls: Walls;
+
     /** The width of the board */
-    private _width: number = 4;
+    private _width: number = 6;
     get Width(): number {
         return this._width;
     }
@@ -19,7 +23,7 @@ export class Board
     }
 
     /** The height of the board */
-    private _height: number = 4;
+    private _height: number = 6;
     get Height(): number {
         return this._height;
     }
@@ -37,6 +41,32 @@ export class Board
     constructor(playerX: number, playerY: number, goalX: number, goalY: number) {
         this.Player = new Player(playerX, playerY);
         this.Goal = new Goal(goalX, goalY);
+        this.Walls = new Walls();
+
+        // Init
+        this.Walls.AddWall(4, 1, 5, 1);
+
+        this.Walls.AddWall(1, 2, 1, 3);
+        this.Walls.AddWall(1, 2, 2, 2);
+
+        this.Walls.AddWall(2, 3, 2, 4);
+
+        this.Walls.AddWall(1, 5, 2, 5);
+        this.Walls.AddWall(1, 5, 1, 6);
+
+        this.Walls.AddWall(3, 2, 3, 3);
+        this.Walls.AddWall(3, 2, 4, 2);
+
+        this.Walls.AddWall(4, 2, 4, 3);
+
+        this.Walls.AddWall(5, 3, 5, 2);
+        this.Walls.AddWall(5, 3, 4, 3);
+        this.Walls.AddWall(5, 3, 6, 3);
+
+        this.Walls.AddWall(3, 6, 3, 5);
+        this.Walls.AddWall(4, 6, 4, 5);
+        this.Walls.AddWall(5, 6, 5, 5);
+        this.Walls.AddWall(5, 6, 6, 6);
     }
 
     /**

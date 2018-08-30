@@ -27,11 +27,16 @@
             <tfoot>
               <tr v-for="m in board.Height" v-bind:key="'height' + m">
 
-                <th class="has-text-centered" v-for="n in board.Width" v-bind:key="'width' + n">
+                <th class="has-text-centered" v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class=" {
+                  'wall-left': board.Walls.IsThereWall(n, m, n - 1, m),
+                  'wall-right': board.Walls.IsThereWall(n, m, n + 1, m),
+                  'wall-top': board.Walls.IsThereWall(n, m, n, m - 1),
+                  'wall-bottom': board.Walls.IsThereWall(n, m, n, m + 1),
+                } ">
                   <!-- Player -->
-                  <i class="fas fa-male" v-if="board.Player.isHere(n, m)"></i>
+                  <i class="fas fa-male" v-if="board.Player.IsHere(n, m)"></i>
                   <!-- Goal -->
-                  <i class="fas fa-flag-checkered" v-if="board.Goal.isHere(n, m)"></i>
+                  <i class="fas fa-flag-checkered" v-if="board.Goal.IsHere(n, m)"></i>
                 </th>
                 
               </tr>
@@ -81,7 +86,7 @@ export default {
 
   data: () => {
     return {
-      board: new Board(2, 1, 2, 2)
+      board: new Board(1, 4, 1, 1)
     };
   },
 

@@ -1,15 +1,30 @@
 @charset "utf-8";
 
-// Styles
-$cellsize: 55px;
+// Table styles
+$cell-size: 55px;
 
 table {
     display:inline-block;
 }
 
 th {
-    width: $cellsize;
-    height: $cellsize;
+    width: $cell-size;
+    height: $cell-size;
+}
+
+// Walls
+$wall-thickness: 5px;
+.wall-left {
+    border-left: $wall-thickness solid black !important;
+}
+.wall-right {
+    border-right: $wall-thickness solid black !important;
+}
+.wall-top {
+    border-top: $wall-thickness solid black !important;
+}
+.wall-bottom {
+    border-bottom: $wall-thickness solid black !important;
 }
 
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
