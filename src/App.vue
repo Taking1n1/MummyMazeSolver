@@ -25,7 +25,7 @@
           <table class="table is-bordered">
             <tfoot>
               <tr v-for="m in boardHeight" v-bind:key="'height' + m">
-                <th v-for="n in boardWidth" v-bind:key="'width' + n"></th>
+                <th v-for="n in boardWidth" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.returnTrue() }"></th>
               </tr>
             </tfoot>
           </table>
@@ -67,12 +67,18 @@ import {
 } from "@fortawesome/fontawesome-free-solid";
 fontawesome.library.add(faUser, faCheck, faDownload);*/
 
+import { Board } from './src/board.model';
+
 export default {
   name: "App",
   data: () => {
     return {
       boardWidth: 3,
-      boardHeight: 4
+      boardHeight: 4,
+      board: new Board(),
+      playerAt: (n: number, m: number) => {
+        return (n === 3 && m === 2) ;
+      }
     };
   }
 };
