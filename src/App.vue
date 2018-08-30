@@ -24,8 +24,8 @@
 
           <table class="table is-bordered">
             <tfoot>
-              <tr v-for="m in boardHeight" v-bind:key="'height' + m">
-                <th v-for="n in boardWidth" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.returnTrue() }"></th>
+              <tr v-for="m in board.Height" v-bind:key="'height' + m">
+                <th v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class="{ 'mm-player': board.returnTrue() }"></th>
               </tr>
             </tfoot>
           </table>
@@ -45,10 +45,10 @@
           <h2 class="title is-4">Model</h2>
 
           <label class="label">boardWidth</label>
-          <input class="input" type="number" placeholder="boardWidth" v-model.number="boardWidth">
+          <input class="input" type="number" placeholder="boardWidth" v-model.number="board.Width">
 
           <label class="label">boardHeight</label>
-          <input class="input" type="number" placeholder="boardHeight" v-model.number="boardHeight">
+          <input class="input" type="number" placeholder="boardHeight" v-model.number="board.Height">
 
         </div>
 
@@ -71,15 +71,14 @@ import { Board } from './src/board.model';
 
 export default {
   name: "App",
+
   data: () => {
     return {
-      boardWidth: 3,
-      boardHeight: 4,
-      board: new Board(),
-      playerAt: (n: number, m: number) => {
-        return (n === 3 && m === 2) ;
-      }
+      board: new Board(1, 1, 2, 2)
     };
+  },
+
+  methods: {
   }
 };
 </script>
