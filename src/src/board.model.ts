@@ -5,13 +5,22 @@ import {Walls} from  './walls.model';
 export class Board
 {
     /** The player going to the goal */
-    public Player: Player;
+    private _player: Player;
+    get Player(): Player {
+        return this._player;
+    }
 
     /** The goal to reach */
-    public Goal: Goal;
+    private _goal: Goal;
+    get Goal(): Goal{
+        return this._goal;
+    }
 
     /** The walls */
-    public Walls: Walls;
+    private _walls: Walls;
+    get Walls(): Walls {
+        return this._walls;
+    }
 
     /** The width of the board */
     private _width: number = 6;
@@ -39,9 +48,9 @@ export class Board
      * @param goalY The y position of the goal
      */
     constructor(playerX: number, playerY: number, goalX: number, goalY: number) {
-        this.Player = new Player(playerX, playerY);
-        this.Goal = new Goal(goalX, goalY);
-        this.Walls = new Walls();
+        this._player = new Player(playerX, playerY);
+        this._goal = new Goal(goalX, goalY);
+        this._walls = new Walls();
 
         // Init
         this.Walls.AddWall(4, 1, 5, 1);
