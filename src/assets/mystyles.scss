@@ -12,6 +12,14 @@ th {
     height: $cell-size;
 }
 
+// Tiles
+.tile {
+    button {
+        width:100%;
+        height:100%;
+    }
+}
+
 // Walls
 $wall-thickness: 5px;
 .wall-left {

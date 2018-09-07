@@ -34,6 +34,7 @@ export abstract class Piece
      * @param y The possible y position of the piece
      */
     public IsHere(x:number, y:number): boolean {
+        //console.log("x: " + x + ", y: " + y + ", result: " + (this._x == x && this._y == y));
         return this._x == x && this._y == y;
     }
 }

@@ -23,25 +23,8 @@
           <h2 class="title is-4">View</h2>
 
           <!-- Board -->
-          <table class="table is-bordered">
-            <tfoot>
-              <tr v-for="m in board.Height" v-bind:key="'height' + m">
+          <BoardView :board="board" />
 
-                <th class="has-text-centered" v-for="n in board.Width" v-bind:key="'width' + n" v-bind:class=" {
-                  'wall-left': board.Walls.IsThereWall(n, m, n - 1, m),
-                  'wall-right': board.Walls.IsThereWall(n, m, n + 1, m),
-                  'wall-top': board.Walls.IsThereWall(n, m, n, m - 1),
-                  'wall-bottom': board.Walls.IsThereWall(n, m, n, m + 1),
-                } ">
-                  <!-- Player -->
-                  <i class="fas fa-male" v-if="board.Player.IsHere(n, m)"></i>
-                  <!-- Goal -->
-                  <i class="fas fa-flag-checkered" v-if="board.Goal.IsHere(n, m)"></i>
-                </th>
-                
-              </tr>
-            </tfoot>
-          </table>
         </div>
 
       </div>
@@ -51,6 +34,23 @@
         <!-- Controller -->
         <div class="column">
           <h2 class="title is-4">Controller</h2>
+
+          <h3 class="title is-5">Player controls</h3>
+          <div class="tile is-ancestor">
+            <div class="tile is-parent is-vertical">
+              <div class="tile is-child"></div>
+              <div class="tile is-child"><button v-on:click="playerMove(-1, 0)">LEFT</button></div>
+            </div>
+            <div class="tile is-parent is-vertical">
+              <div class="tile is-child"><button v-on:click="playerMove(0, -1)">UP</button></div>
+              <div class="tile is-child"><button v-on:click="playerMove(0, 1)">DOWN</button></div>
+            </div>
+            <div class="tile is-parent is-vertical">
+              <div class="tile is-child"></div>
+              <div class="tile is-child"><button v-on:click="playerMove(1, 0)">RIGHT</button></div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Model -->
@@ -72,6 +72,9 @@
 </template>
 
 <script lang="ts">
+/**
+ *  Dependencies
+ */
 import fontawesome from "@fortawesome/fontawesome";
 import {
   faMale, // Player
@@ -79,10 +82,22 @@ import {
 } from "@fortawesome/fontawesome-free-solid";
 fontawesome.library.add(faMale, faFlagCheckered);
 
+/**
+ * Vue components
+ * */
+import BoardView from './components/view/BoardView.vue';
+
+/** 
+ * Models
+ */
 import { Board } from './src/board.model';
 
 export default {
   name: "App",
+
+  components: {
+    BoardView
+  },
 
   data: () => {
     return {
@@ -91,6 +106,14 @@ export default {
   },
 
   methods: {
+    /**
+     * Moves the player given an x and y offset
+     */
+    playerMove: function(this: any, x: number, y: number) {
+      this.board.Player.X += x;
+      this.board.Player.Y += y;
+      console.log(this.board.Player.X + ", " + this.board.Player.Y);
+    }
   }
 };
 </script>
