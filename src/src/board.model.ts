@@ -1,5 +1,6 @@
 import {Player} from  './pieces/player/player.model';
 import {Goal} from  './pieces/misc/goal.model';
+import {Piece} from './pieces/piece.model';
 import {Walls} from  './walls.model';
 
 export class Board
@@ -79,12 +80,97 @@ export class Board
     }
 
     /**
-     * Gets the position of the player
+     * Gets if we can move a piece in a certain direction
+     * @param piece The piece to move
+     * @param direction The direction to move the piece in
+     * @returns true if we can move, false if not
      */
-    /*public getPlayerPos(): object {
-        return {
-            x: this._player.X,
-            y: this._player.Y
-        };
-    }*/
+    public CanMovePiece(piece: Piece, direction: string): boolean
+    {
+        // If we're going up
+        if (direction === "up")
+        {
+            // If the piece won't move out of bounds
+            if (piece.Y != 1) {
+                // If there are no walls to bump into
+                if (!this._walls.IsThereWall(piece.X, piece.Y, piece.X, piece.Y - 1)) {
+                    return true;
+                }
+            }
+        }
+
+        // If we're going down
+        if (direction === "down")
+        {
+            // If the piece won't move out of bounds
+            if (piece.Y != this.Height) {
+                // If there are no walls to bump into
+                if (!this._walls.IsThereWall(piece.X, piece.Y, piece.X, piece.Y + 1)) {
+                    return true;
+                }
+            }
+        }
+
+        // If we're going right
+        if (direction === "right")
+        {
+            // If the piece won't move out of bounds
+            if (piece.X != this.Width) {
+                // If there are no walls to bump into
+                if (!this._walls.IsThereWall(piece.X, piece.Y, piece.X + 1, piece.Y)) {
+                    return true;
+                }
+            }
+        }
+
+        // If we're going left
+        if (direction === "left")
+        {
+            // If the piece won't move out of bounds
+            if (piece.X != 1) {
+                // If there are no walls to bump into
+                if (!this._walls.IsThereWall(piece.X, piece.Y, piece.X - 1, piece.Y)) {
+                    return true;
+                }
+            }
+        }
+
+        // None of the conditions are true
+        return false;
+    }
+
+    /**
+     * Moves a piece
+     * @param piece The piece to move
+     * @param direction The direction to move the piece in
+     * @returns true if moved, false if not
+     */
+    public MovePiece(piece: Piece, direction: string): boolean
+    {
+        // If we can move
+        if (this.CanMovePiece(piece, direction))
+        {
+            // If we're going up
+            if (direction === "up")
+                piece.Y -= 1;
+    
+            // If we're going down
+            if (direction === "down")
+                piece.Y += 1;
+    
+            // If we're going right
+            if (direction === "right")
+                piece.X += 1;
+    
+            // If we're going left
+            if (direction === "left")
+                piece.X -= 1;
+
+            // We've moved
+            return true;
+        }
+
+        // We can't move
+        return false;
+    }
 }

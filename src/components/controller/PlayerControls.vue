@@ -2,15 +2,15 @@
     <div class="tile is-ancestor">
     <div class="tile is-parent is-vertical">
         <div class="tile is-child"></div>
-        <div class="tile is-child"><button v-on:click="playerMove(-1, 0)">LEFT</button></div>
+        <div class="tile is-child"><button class="button is-primary" v-on:click="board.MovePiece(board.Player, 'left')">LEFT</button></div>
     </div>
     <div class="tile is-parent is-vertical">
-        <div class="tile is-child"><button v-on:click="playerMove(0, -1)">UP</button></div>
-        <div class="tile is-child"><button v-on:click="playerMove(0, 1)">DOWN</button></div>
+        <div class="tile is-child"><button class="button is-primary" v-on:click="board.MovePiece(board.Player, 'up')">UP</button></div>
+        <div class="tile is-child"><button class="button is-primary" v-on:click="board.MovePiece(board.Player, 'down')">DOWN</button></div>
     </div>
     <div class="tile is-parent is-vertical">
         <div class="tile is-child"></div>
-        <div class="tile is-child"><button v-on:click="playerMove(1, 0)">RIGHT</button></div>
+        <div class="tile is-child"><button class="button is-primary" v-on:click="board.MovePiece(board.Player, 'right')">RIGHT</button></div>
     </div>
     </div>
 </template>
@@ -23,14 +23,6 @@ export default {
     props: ['board'],
 
     methods: {
-        /**
-         * Moves the player given an x and y offset
-         */
-        playerMove: function(this: any, x: number, y: number) {
-        this.board.Player.X += x;
-        this.board.Player.Y += y;
-        console.log(this.board.Player.X + ", " + this.board.Player.Y);
-        }
     }
 }
 
