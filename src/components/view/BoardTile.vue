@@ -11,7 +11,7 @@
             </div>
             
             <!-- Goal -->
-            <div v-if="board.Goal.IsHere(n, m)">
+            <div v-show="board.Goal.IsHere(n, m)">
                 <i class="fas fa-flag-checkered"></i>
             </div>
         </th>
@@ -27,5 +27,25 @@ export default {
 </script>
 
 <style lang="scss">
+    // Table styles
+    $cell-size: 55px;
+    th {
+        width: $cell-size;
+        height: $cell-size;
+    }
 
+    // Walls
+    $wall-thickness: 5px;
+    .wall-left {
+        border-left: $wall-thickness solid black !important;
+    }
+    .wall-right {
+        border-right: $wall-thickness solid black !important;
+    }
+    .wall-top {
+        border-top: $wall-thickness solid black !important;
+    }
+    .wall-bottom {
+        border-bottom: $wall-thickness solid black !important;
+    }
 </style>

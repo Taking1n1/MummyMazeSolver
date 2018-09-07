@@ -21,10 +21,7 @@
         <!-- View -->
         <div class="column">
           <h2 class="title is-4">View</h2>
-
-          <!-- Board -->
-          <BoardView :board="board" />
-
+          <ViewContainer :board="board" />
         </div>
 
       </div>
@@ -34,35 +31,13 @@
         <!-- Controller -->
         <div class="column">
           <h2 class="title is-4">Controller</h2>
-
-          <h3 class="title is-5">Player controls</h3>
-          <div class="tile is-ancestor">
-            <div class="tile is-parent is-vertical">
-              <div class="tile is-child"></div>
-              <div class="tile is-child"><button v-on:click="playerMove(-1, 0)">LEFT</button></div>
-            </div>
-            <div class="tile is-parent is-vertical">
-              <div class="tile is-child"><button v-on:click="playerMove(0, -1)">UP</button></div>
-              <div class="tile is-child"><button v-on:click="playerMove(0, 1)">DOWN</button></div>
-            </div>
-            <div class="tile is-parent is-vertical">
-              <div class="tile is-child"></div>
-              <div class="tile is-child"><button v-on:click="playerMove(1, 0)">RIGHT</button></div>
-            </div>
-          </div>
-
+          <ControllerContainer :board="board" />
         </div>
 
         <!-- Model -->
         <div class="column">
           <h2 class="title is-4">Model</h2>
-
-          <label class="label">boardWidth</label>
-          <input class="input" type="number" placeholder="boardWidth" v-model.number="board.Width">
-
-          <label class="label">boardHeight</label>
-          <input class="input" type="number" placeholder="boardHeight" v-model.number="board.Height">
-
+          <ModelContainer :board="board" />
         </div>
 
       </div>
@@ -85,7 +60,9 @@ fontawesome.library.add(faMale, faFlagCheckered);
 /**
  * Vue components
  * */
-import BoardView from './components/view/BoardView.vue';
+import ViewContainer from './components/view/ViewContainer.vue';
+import ControllerContainer from './components/controller/ControllerContainer.vue';
+import ModelContainer from './components/model/ModelContainer.vue';
 
 /** 
  * Models
@@ -96,7 +73,7 @@ export default {
   name: "App",
 
   components: {
-    BoardView
+    ViewContainer, ControllerContainer, ModelContainer
   },
 
   data: () => {
@@ -106,14 +83,6 @@ export default {
   },
 
   methods: {
-    /**
-     * Moves the player given an x and y offset
-     */
-    playerMove: function(this: any, x: number, y: number) {
-      this.board.Player.X += x;
-      this.board.Player.Y += y;
-      console.log(this.board.Player.X + ", " + this.board.Player.Y);
-    }
   }
 };
 </script>

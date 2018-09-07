@@ -19,7 +19,7 @@
 import BoardTile from './BoardTile.vue';
 
 export default {
-    name: "BoardView",
+    name: "ViewContainer",
 
     components: {
         BoardTile
@@ -31,5 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
-
+    table {
+        display:inline-block;
+    }
 </style>
